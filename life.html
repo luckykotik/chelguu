@@ -506,6 +506,43 @@ input[type=range]{touch-action:pan-y}
   </head>
   <body data-page="life">
     <div id="root"></div>
+
+    <main id="cl-life-static" aria-label="Студенческая жизнь">
+      <section class="cls-hero">
+        <div class="cls-eyebrow">ЖИЗНЬ КОЛЛЕДЖА</div>
+        <h1>Студенческая жизнь — <span>больше, чем учёба</span></h1>
+        <p>Здесь можно найти друзей, попробовать себя в новом деле, участвовать в событиях и стать частью большой команды ЧелГУ.</p>
+        <a class="cls-jump" href="#cls-team">Найти свою команду <span>↓</span></a>
+      </section>
+
+      <section class="cls-section" id="cls-team">
+        <div class="cls-kicker">ТВОЯ КОМАНДА</div>
+        <h2>Найди свою <span>команду</span></h2>
+        <p class="cls-intro">Учёба — это только часть. В колледже есть объединения, где находят друзей, учатся работать вместе и пробуют себя в деле.</p>
+        <div class="cls-team-grid">
+          <article class="cls-card cls-purple"><div class="cls-icon">🛡️</div><div class="cls-tag">КОМАНДА · РСО · ПРОЕКТЫ</div><h3>ЭГИДА × РСО</h3><h4>Единое студенческое отрядное движение</h4><p>Совместные проекты и мероприятия, трудовые направления, слёты, поездки, новые знакомства и взаимопомощь. Здесь можно найти друзей, получить первый командный опыт и внести вклад в жизнь колледжа.</p></article>
+          <article class="cls-card cls-orange"><div class="cls-icon">🔥</div><div class="cls-tag">СОБЫТИЯ · ЛИДЕРСТВО</div><h3>Актив колледжа</h3><h4>Те, кто делает студенческую жизнь</h4><p>Придумывают праздники, встречают первокурсников, помогают организовывать мероприятия и делают так, чтобы каждый быстрее почувствовал себя частью колледжа.</p></article>
+          <article class="cls-card cls-red"><div class="cls-icon">🤝</div><div class="cls-tag">ДОБРО · ОПЫТ</div><h3>Волонтёры</h3><h4>Помогаем там, где нужно</h4><p>Участвуют в акциях и событиях, помогают организаторам и людям вокруг. Хороший старт, если хочется быть полезным и получить новый опыт.</p></article>
+          <article class="cls-card cls-lilac"><div class="cls-icon">🎭</div><div class="cls-tag">СЦЕНА · ТРАДИЦИИ</div><h3>Творчество</h3><h4>Бал, сцена, праздники</h4><p>Подготовка балов, концертов и творческих номеров: костюмы, танцы, выступления и общая атмосфера праздника.</p></article>
+          <article class="cls-card cls-green"><div class="cls-icon">🥾</div><div class="cls-tag">ПРИРОДА · ДРУЗЬЯ</div><h3>Походы</h3><h4>Выезды и новые маршруты</h4><p>Поездки на природу, свежий воздух, новые места и команда, с которой интересно проводить время за пределами учебных аудиторий.</p></article>
+        </div>
+      </section>
+
+      <section class="cls-section cls-events" id="cls-events">
+        <div class="cls-kicker">КАЛЕНДАРЬ ВПЕЧАТЛЕНИЙ</div>
+        <h2>Не только <span>учёба</span></h2>
+        <p class="cls-intro">В течение года проходят встречи, праздники, творческие события и мероприятия для студентов.</p>
+        <div class="cls-event-grid">
+          <article class="cls-event"><div class="cls-event-art art-ball">💃</div><div><h3>Бал</h3><p>Танцы, костюмы, музыка и возможность стать частью красивой традиции колледжа.</p></div></article>
+          <article class="cls-event"><div class="cls-event-art art-sept">🎒</div><div><h3>Первое сентября</h3><p>Знакомство с колледжем, встреча первокурсников и начало нового этапа.</p></div></article>
+          <article class="cls-event"><div class="cls-event-art art-adapt">🤝</div><div><h3>Адаптация</h3><p>Игры, общение и знакомство с одногруппниками, чтобы быстрее освоиться.</p></div></article>
+          <article class="cls-event"><div class="cls-event-art art-award">🏆</div><div><h3>Награждение</h3><p>Признание достижений студентов, дипломы, сертификаты и общая гордость за команду.</p></div></article>
+        </div>
+      </section>
+
+      <section class="cls-cta"><div><div class="cls-kicker">ТВОЯ ИСТОРИЯ НАЧИНАЕТСЯ ЗДЕСЬ</div><h2>В колледже есть место <span>для тебя</span></h2><p>Выбирай направление, знакомься с людьми, участвуй в событиях и создавай собственные студенческие воспоминания.</p></div><a href="specialties.html">Посмотреть специальности →</a></section>
+    </main>
+
   <!-- ===== Живой слой: фото-коллаж, галерея, призыв. Фото кладём в папку photos/ ===== -->
 <style id="cl-style">
 .cl-ph{position:relative;overflow:hidden;border:2px solid #14142b;border-radius:20px;box-shadow:6px 6px 0 #14142b;background:var(--g,#4d2e7b);display:grid;place-items:center;color:#fff}
@@ -951,6 +988,48 @@ body[data-page="admission"] #cl-extra,body[data-page="dorm"] #cl-extra{margin-to
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',setup,{once:true});
 })();
 </script>
+
+
+<style id="cl-life-static-styles">
+/* Самостоятельная страница студенческой жизни: не зависит от динамической вставки React */
+#cl-life-static{display:none;max-width:1180px;margin:0 auto;padding:34px 22px 90px;color:#17152c}
+body[data-page="life"] #cl-life-static{display:block!important}
+body[data-page="life"] #root #cl-life{display:none!important}
+#cl-life-static *{box-sizing:border-box}
+#cl-life-static .cls-hero{position:relative;overflow:hidden;padding:clamp(30px,6vw,72px);border-radius:30px;background:radial-gradient(circle at 85% 15%,rgba(255,255,255,.22),transparent 28%),linear-gradient(125deg,#39205f,#6840a1 58%,#d92550);color:#fff;box-shadow:0 18px 50px rgba(57,32,95,.18)}
+#cl-life-static .cls-eyebrow,#cl-life-static .cls-kicker{font-size:12px;font-weight:900;letter-spacing:.2em;text-transform:uppercase}
+#cl-life-static .cls-hero h1{max-width:760px;margin:16px 0;font-size:clamp(34px,6vw,66px);line-height:1.02;font-weight:950;color:#fff}
+#cl-life-static .cls-hero h1 span,#cl-life-static h2 span{color:#ffc247}
+#cl-life-static .cls-hero p{max-width:650px;font-size:clamp(16px,2vw,19px);line-height:1.65;color:rgba(255,255,255,.9)}
+#cl-life-static .cls-jump{display:inline-flex;gap:14px;align-items:center;margin-top:18px;padding:13px 20px;border-radius:999px;background:#fff;color:#39205f;text-decoration:none;font-weight:900;box-shadow:4px 4px 0 rgba(20,20,43,.35)}
+#cl-life-static .cls-section{padding-top:66px;scroll-margin-top:30px}
+#cl-life-static .cls-kicker{color:#d92550}
+#cl-life-static h2{margin:9px 0 12px;font-size:clamp(30px,5vw,48px);line-height:1.05;font-weight:950;color:#17152c}
+#cl-life-static .cls-intro{max-width:700px;color:#66647b;font-size:17px;line-height:1.65;margin:0 0 26px}
+#cl-life-static .cls-team-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+#cl-life-static .cls-card{position:relative;overflow:hidden;min-height:250px;padding:25px;border:2px solid #17152c;border-radius:22px;background:#fff;box-shadow:5px 5px 0 #17152c}
+#cl-life-static .cls-card:after{content:"";position:absolute;width:170px;height:170px;border-radius:50%;right:-55px;top:-65px;background:var(--orb);opacity:.13}
+#cl-life-static .cls-purple{--orb:#6840a1}#cl-life-static .cls-orange{--orb:#ff9710}#cl-life-static .cls-red{--orb:#d92550}#cl-life-static .cls-lilac{--orb:#9b6ad3}#cl-life-static .cls-green{--orb:#3c9c78}
+#cl-life-static .cls-icon{font-size:38px;margin-bottom:14px}
+#cl-life-static .cls-tag{font-size:10px;letter-spacing:.13em;font-weight:900;color:#77738b}
+#cl-life-static .cls-card h3{margin:8px 0 4px;font-size:25px;font-weight:950;color:#17152c}
+#cl-life-static .cls-card h4{margin:0 0 10px;font-size:14px;color:#6840a1}
+#cl-life-static .cls-card p{margin:0;color:#5d5a72;line-height:1.62;font-size:14px;max-width:620px}
+#cl-life-static .cls-events{margin-top:10px}
+#cl-life-static .cls-event-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+#cl-life-static .cls-event{overflow:hidden;border:2px solid #17152c;border-radius:20px;background:#fff;box-shadow:4px 4px 0 #17152c}
+#cl-life-static .cls-event-art{display:grid;place-items:center;min-height:130px;font-size:55px}
+#cl-life-static .art-ball{background:linear-gradient(135deg,#4d2e7b,#a05ae0)}#cl-life-static .art-sept{background:linear-gradient(135deg,#d92520,#ff8b60)}#cl-life-static .art-adapt{background:linear-gradient(135deg,#ff9710,#ffc247)}#cl-life-static .art-award{background:linear-gradient(135deg,#4d2e7b,#6d3fb0)}
+#cl-life-static .cls-event>div:last-child{padding:17px}
+#cl-life-static .cls-event h3{margin:0 0 7px;font-size:19px;color:#17152c}
+#cl-life-static .cls-event p{margin:0;color:#66647b;font-size:13px;line-height:1.55}
+#cl-life-static .cls-cta{display:flex;align-items:center;justify-content:space-between;gap:26px;margin-top:66px;padding:30px;border-radius:24px;background:#f3effa;border:2px solid #17152c;box-shadow:5px 5px 0 #17152c}
+#cl-life-static .cls-cta h2{font-size:clamp(26px,4vw,38px)}
+#cl-life-static .cls-cta p{max-width:680px;color:#66647b;line-height:1.6}
+#cl-life-static .cls-cta a{flex:0 0 auto;padding:14px 18px;border-radius:999px;background:#4d2e7b;color:#fff;text-decoration:none;font-weight:900}
+@media(max-width:850px){#cl-life-static .cls-event-grid{grid-template-columns:repeat(2,minmax(0,1fr))}#cl-life-static .cls-cta{align-items:flex-start;flex-direction:column}}
+@media(max-width:600px){#cl-life-static{padding:20px 14px 60px}#cl-life-static .cls-team-grid,#cl-life-static .cls-event-grid{grid-template-columns:1fr}#cl-life-static .cls-card{min-height:0}#cl-life-static .cls-event-art{min-height:110px}}
+</style>
 
 </body>
 </html>
