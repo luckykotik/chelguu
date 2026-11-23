@@ -785,7 +785,7 @@ input[type=range]{touch-action:pan-y}
         <a class="cl-official-link" href="https://abit.csu.ru/priem/dogovor/" target="_blank" rel="noopener">Стоимость, договоры и скидки на abit.csu.ru →</a>
       </div>
 `;
-    life.appendChild(extra);
+    main.appendChild(extra);
 
     var tabButtons=extra.querySelectorAll(".cl-tab");
     tabButtons.forEach(function(btn){btn.addEventListener("click",function(){
@@ -793,15 +793,19 @@ input[type=range]{touch-action:pan-y}
       extra.querySelectorAll(".cl-panel").forEach(function(panel){panel.hidden=panel.id!=="cl-"+btn.dataset.panel});
     })});
     extra.querySelectorAll(".cl-price-link").forEach(function(btn){btn.addEventListener("click",function(){
-      var costTab=extra.querySelector('.cl-tab[data-panel="cost"]');
-      if(costTab)costTab.click();
+      if(document.body.getAttribute("data-page")!=="admission"){
+        var costTab=extra.querySelector('.cl-tab[data-panel="cost"]');
+        if(costTab)costTab.click();
+      }
       extra.querySelector("#cl-cost").scrollIntoView({behavior:"smooth",block:"start"});
     })});
     var goCost=extra.querySelector("#cl-go-cost");
     if(goCost)goCost.addEventListener("click",function(ev){
       ev.preventDefault();
-      var costTab=extra.querySelector('.cl-tab[data-panel="cost"]');
-      if(costTab)costTab.click();
+      if(document.body.getAttribute("data-page")!=="admission"){
+        var costTab=extra.querySelector('.cl-tab[data-panel="cost"]');
+        if(costTab)costTab.click();
+      }
       extra.querySelector("#cl-cost").scrollIntoView({behavior:"smooth",block:"start"});
     });
     // Для общежития используется один подтверждённый адрес и одна карта — Яндекс Карты.
@@ -840,9 +844,19 @@ body[data-page="life"] #cl-extra{display:none!important}
 body[data-page="admission"] #root main>*{display:none!important}
 body[data-page="admission"] #cl-life{display:none!important}
 body[data-page="admission"] #cl-extra{display:block!important}
+body[data-page="admission"] #root main>#cl-extra{display:block!important}
 body[data-page="dorm"] #root main>*{display:none!important}
 body[data-page="dorm"] #cl-life{display:none!important}
 body[data-page="dorm"] #cl-extra{display:block!important}
+body[data-page="dorm"] #root main>#cl-extra{display:block!important}
+body[data-page="admission"] #cl-extra .cl-tabs,
+body[data-page="dorm"] #cl-extra .cl-tabs{display:none!important}
+body[data-page="admission"] #cl-admission,
+body[data-page="admission"] #cl-cost,
+body[data-page="dorm"] #cl-dorm{display:block!important}
+body[data-page="admission"] #cl-dorm,
+body[data-page="dorm"] #cl-admission,
+body[data-page="dorm"] #cl-cost{display:none!important}
 </style>
 
 
@@ -859,14 +873,82 @@ body[data-page="dorm"] #cl-extra{display:block!important}
   }
   var route=routes.find(function(r){return r[0]===page})||routes[0];
   document.body.setAttribute('data-page',route[2]);
-  if(route[2]==='admission'||route[2]==='dorm'){
-   var wanted=route[2]==='dorm'?'dorm':'admission';
-   var tries=0;var t=setInterval(function(){tries++;var tab=document.querySelector('.cl-tab[data-panel="'+wanted+'"]');if(tab){tab.click();clearInterval(t)}if(tries>60)clearInterval(t)},150);
-  }
   return true;
  }
  var n=0;var timer=setInterval(function(){n++;if(install()||n>80)clearInterval(timer)},150);
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',install,{once:true});
+})();
+</script>
+
+<style id="chelgu-separate-content-pages">
+body[data-page="admission"] #cl-extra,body[data-page="dorm"] #cl-extra{margin-top:54px}
+#cl-nearby-local{margin:42px 0 18px}
+#cl-nearby-local .cl-near-title{margin-top:30px}
+#cl-nearby-local .cl-near-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+#cl-nearby-local .cl-near{min-height:145px}
+#cl-nearby-local .cl-near .cl-distance{font-size:12px;color:#4d2e7b;font-weight:900}
+#cl-nearby-local .cl-near small{display:block}
+#cl-nearby-local .cl-near em{margin-top:auto}
+@media(max-width:760px){#cl-nearby-local .cl-near-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:480px){#cl-nearby-local .cl-near-grid{grid-template-columns:1fr}}
+</style>
+<script id="chelgu-page-content-setup">
+(function(){
+  var page=document.body.getAttribute('data-page');
+  function mapLink(q){return 'https://yandex.ru/maps/?text='+encodeURIComponent(q)}
+  function setup(){
+    var extra=document.getElementById('cl-extra');
+    if(!extra)return false;
+    var head=extra.querySelector('.cl-extra-head');
+    var tabs=extra.querySelector('.cl-tabs');
+    var admission=document.getElementById('cl-admission');
+    var cost=document.getElementById('cl-cost');
+    var dorm=document.getElementById('cl-dorm');
+    if(page==='admission'){
+      if(head)head.innerHTML='<div class="k">Абитуриенту</div><h2>Поступление в <em>колледж ЧелГУ</em></h2><p class="lead">Направления подготовки, сроки обучения, стоимость и официальные материалы для поступающих.</p>';
+      if(tabs)tabs.style.display='none';
+      if(admission){admission.hidden=false;admission.style.display='block'}
+      if(cost){cost.hidden=false;cost.style.display='block'}
+      if(dorm){dorm.hidden=true;dorm.style.display='none'}
+      return true;
+    }
+    if(page==='dorm'){
+      if(head)head.innerHTML='<div class="k">Студенческое проживание</div><h2>Общежитие <em>ЧелГУ</em></h2><p class="lead">Адрес, карта, стоимость проживания и полезные места рядом — всё в одном разделе.</p>';
+      if(tabs)tabs.style.display='none';
+      if(admission){admission.hidden=true;admission.style.display='none'}
+      if(cost){cost.hidden=true;cost.style.display='none'}
+      if(dorm){dorm.hidden=false;dorm.style.display='block'}
+      if(dorm&&!document.getElementById('cl-nearby-local')){
+        var nearby=document.createElement('section');
+        nearby.id='cl-nearby-local';
+        nearby.innerHTML=`
+          <h3 class="cl-near-title">Магазины рядом</h3>
+          <p class="lead">Ниже — ближайшие продуктовые магазины вокруг общежития. Расстояния ориентировочные, по данным карт; фактический пеший путь может отличаться.</p>
+          <div class="cl-near-grid">
+            <a class="cl-near" href="${mapLink('Продуктовый магазин, ул. Энергетиков, 3А, Челябинск')}" target="_blank" rel="noopener"><span>🛒</span><b>Продуктовый магазин</b><small>ул. Энергетиков, 3А</small><span class="cl-distance">≈ 90 м</span><em>Открыть на Яндекс Картах ↗</em></a>
+            <a class="cl-near" href="${mapLink('Пятёрочка, ул. Кронштадтская, 30, Челябинск')}" target="_blank" rel="noopener"><span>🛍️</span><b>Пятёрочка</b><small>ул. Кронштадтская, 30</small><span class="cl-distance">≈ 225 м</span><em>Открыть на Яндекс Картах ↗</em></a>
+            <a class="cl-near" href="${mapLink('Магазин Продукты, ул. Якутская, 10, Челябинск')}" target="_blank" rel="noopener"><span>🥫</span><b>Магазин «Продукты»</b><small>ул. Якутская, 10</small><span class="cl-distance">≈ 380 м</span><em>Открыть на Яндекс Картах ↗</em></a>
+            <a class="cl-near" href="${mapLink('Магнит, ул. Нахимова, 9А, Челябинск')}" target="_blank" rel="noopener"><span>🧺</span><b>Магнит</b><small>ул. Нахимова, 9А</small><span class="cl-distance">≈ 430 м</span><em>Открыть на Яндекс Картах ↗</em></a>
+          </div>
+          <h3 class="cl-near-title">Развлечения и досуг</h3>
+          <p class="lead">Варианты для прогулки, занятий спортом и отдыха недалеко от общежития.</p>
+          <div class="cl-near-grid">
+            <a class="cl-near" href="${mapLink('Спарта СДЮСШОР по боксу, ул. Энергетиков, 1, Челябинск')}" target="_blank" rel="noopener"><span>🥊</span><b>Спортивная школа «Спарта»</b><small>ул. Энергетиков, 1</small><span class="cl-distance">≈ 180 м</span><em>Открыть на Яндекс Картах ↗</em></a>
+            <a class="cl-near" href="${mapLink('Пельменная, ул. Энергетиков, 10, Челябинск')}" target="_blank" rel="noopener"><span>🍽️</span><b>Пельменная</b><small>ул. Энергетиков, 10</small><span class="cl-distance">≈ 320 м</span><em>Открыть на Яндекс Картах ↗</em></a>
+            <a class="cl-near" href="${mapLink('Сквер ТЭЦ, Челябинск')}" target="_blank" rel="noopener"><span>🌳</span><b>Сквер ТЭЦ</b><small>Место для прогулки и отдыха на свежем воздухе</small><span class="cl-distance">≈ 770 м</span><em>Открыть на Яндекс Картах ↗</em></a>
+            <a class="cl-near" href="${mapLink('ДК Энергетик, ул. Энергетиков, 19, Челябинск')}" target="_blank" rel="noopener"><span>🎭</span><b>ДК «Энергетик»</b><small>ул. Энергетиков, 19 · культурные мероприятия</small><span class="cl-distance">≈ 750 м</span><em>Открыть на Яндекс Картах ↗</em></a>
+            <a class="cl-near" href="${mapLink('Кафе Дело Вкуса, ул. Энергетиков, 19, Челябинск')}" target="_blank" rel="noopener"><span>☕</span><b>Кафе «Дело Вкуса»</b><small>ул. Энергетиков, 19</small><span class="cl-distance">≈ 740 м</span><em>Открыть на Яндекс Картах ↗</em></a>
+          </div>
+          <p class="cl-cost-legend">Перед посещением проверьте актуальный режим работы и наличие мероприятий на Яндекс Картах.</p>`;
+        dorm.appendChild(nearby);
+      }
+      return true;
+    }
+    return true;
+  }
+  var tries=0;
+  var timer=setInterval(function(){tries++;if(setup()||tries>100)clearInterval(timer)},150);
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',setup,{once:true});
 })();
 </script>
 
