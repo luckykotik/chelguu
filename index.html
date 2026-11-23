@@ -506,37 +506,6 @@ input[type=range]{touch-action:pan-y}
   </head>
   <body data-page="home">
     
-<section id="cl-college-overview" aria-label="О колледже ЧелГУ">
-  <div class="clo-wrap">
-    <div class="clo-eyebrow">КОЛЛЕДЖ ЧЕЛЯБИНСКОГО ГОСУДАРСТВЕННОГО УНИВЕРСИТЕТА</div>
-    <h2>Образование, которое <span>открывает возможности</span></h2>
-    <p class="clo-lead">Колледж ЧелГУ — учебное структурное подразделение Челябинского государственного университета, реализующее программы среднего профессионального образования. Главная задача колледжа — подготовка квалифицированных специалистов среднего звена, востребованных на рынке труда. Обучение сочетает теоретическую подготовку и практическую работу, а после получения диплома выпускники могут продолжить образование в ЧелГУ по системе непрерывного образования.</p>
-    <div class="clo-facts">
-      <article><strong>85%</strong><span>штатных педагогических работников имеют квалификационную категорию</span></article>
-      <article><strong>7 000 м²</strong><span>площадь учебного корпуса колледжа</span></article>
-      <article><strong>30 аудиторий</strong><span>включает учебный корпус</span></article>
-      <article><strong>91%</strong><span>преподавателей профессиональных модулей имеют опыт работы в профильных организациях не менее года</span></article>
-    </div>
-    <div class="clo-note"><span class="clo-dot"></span>Теория, практика и поддержка на пути к выбранной профессии</div>
-  </div>
-</section>
-<style id="cl-college-overview-style">
-#cl-college-overview{display:block!important;position:relative;z-index:2;width:min(1120px,calc(100% - 40px));margin:28px auto 34px;padding:34px 36px 30px;background:linear-gradient(125deg,#f4edff 0%,#fff 58%,#fff8ec 100%);border:2px solid #14142b;border-radius:26px;box-shadow:7px 7px 0 #d9c8f5;color:#211a31;box-sizing:border-box}
-#cl-college-overview .clo-wrap{max-width:100%;margin:0 auto}
-#cl-college-overview .clo-eyebrow{font:900 10px/1.5 system-ui,sans-serif;letter-spacing:.16em;color:#76519b}
-#cl-college-overview h2{font:950 clamp(27px,3.8vw,43px)/1.06 system-ui,sans-serif;margin:12px 0 14px;letter-spacing:-.04em;color:#171329}
-#cl-college-overview h2 span{color:#8052b2}
-#cl-college-overview .clo-lead{max-width:980px;font:500 15px/1.72 system-ui,sans-serif;color:#514960;margin:0}
-#cl-college-overview .clo-facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:24px 0 0}
-#cl-college-overview .clo-facts article{min-width:0;padding:17px 16px;border:1.5px solid #e5d9f1;border-radius:17px;background:rgba(255,255,255,.9);box-shadow:0 5px 16px #3820570c}
-#cl-college-overview .clo-facts strong{display:block;font:950 23px/1.15 system-ui,sans-serif;color:#623c91}
-#cl-college-overview .clo-facts span{display:block;margin-top:8px;color:#62596d;font:600 12px/1.5 system-ui,sans-serif}
-#cl-college-overview .clo-note{display:flex;align-items:center;gap:9px;margin-top:19px;color:#675779;font:750 12px/1.4 system-ui,sans-serif}
-#cl-college-overview .clo-dot{width:9px;height:9px;flex:0 0 9px;border-radius:50%;background:#d88a35;box-shadow:0 0 0 4px #f8e8d6}
-@media(max-width:850px){#cl-college-overview .clo-facts{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:560px){#cl-college-overview{width:calc(100% - 26px);margin:18px auto 25px;padding:24px 19px;border-radius:20px}#cl-college-overview .clo-facts{grid-template-columns:1fr}#cl-college-overview h2{font-size:29px}}
-</style>
-
 <div id="root"></div>
 
 
@@ -996,6 +965,62 @@ body[data-page="admission"] #cl-extra,body[data-page="dorm"] #cl-extra{margin-to
   var tries=0;
   var timer=setInterval(function(){tries++;if(setup()||tries>100)clearInterval(timer)},150);
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',setup,{once:true});
+})();
+</script>
+
+
+<!-- Надёжное размещение блока о колледже внизу главной страницы -->
+<script id="cl-home-overview-placement">
+(function(){
+ const section=document.createElement('template');
+ section.innerHTML=`<section id="cl-college-overview" aria-label="О колледже ЧелГУ">
+  <div class="clo-wrap">
+    <div class="clo-eyebrow">КОЛЛЕДЖ ЧЕЛЯБИНСКОГО ГОСУДАРСТВЕННОГО УНИВЕРСИТЕТА</div>
+    <h2>Образование, которое <span>открывает возможности</span></h2>
+    <p class="clo-lead">Колледж ЧелГУ — учебное структурное подразделение Челябинского государственного университета, реализующее программы среднего профессионального образования. Главная задача колледжа — подготовка квалифицированных специалистов среднего звена, востребованных на рынке труда. Обучение сочетает теоретическую подготовку и практическую работу, а после получения диплома выпускники могут продолжить образование в ЧелГУ по системе непрерывного образования.</p>
+    <div class="clo-facts">
+      <article><strong>85%</strong><span>штатных педагогических работников имеют квалификационную категорию</span></article>
+      <article><strong>7 000 м²</strong><span>площадь учебного корпуса колледжа</span></article>
+      <article><strong>30 аудиторий</strong><span>включает учебный корпус</span></article>
+      <article><strong>91%</strong><span>преподавателей профессиональных модулей имеют опыт работы в профильных организациях не менее года</span></article>
+    </div>
+    <div class="clo-note"><span class="clo-dot"></span>Теория, практика и поддержка на пути к выбранной профессии</div>
+  </div>
+</section>\n` ;
+ const style=document.createElement('template');
+ style.innerHTML=`<style id="cl-college-overview-style">
+#cl-college-overview{display:block!important;position:relative;z-index:2;width:min(1120px,calc(100% - 40px));margin:28px auto 34px;padding:34px 36px 30px;background:linear-gradient(125deg,#f4edff 0%,#fff 58%,#fff8ec 100%);border:2px solid #14142b;border-radius:26px;box-shadow:7px 7px 0 #d9c8f5;color:#211a31;box-sizing:border-box}
+#cl-college-overview .clo-wrap{max-width:100%;margin:0 auto}
+#cl-college-overview .clo-eyebrow{font:900 10px/1.5 system-ui,sans-serif;letter-spacing:.16em;color:#76519b}
+#cl-college-overview h2{font:950 clamp(27px,3.8vw,43px)/1.06 system-ui,sans-serif;margin:12px 0 14px;letter-spacing:-.04em;color:#171329}
+#cl-college-overview h2 span{color:#8052b2}
+#cl-college-overview .clo-lead{max-width:980px;font:500 15px/1.72 system-ui,sans-serif;color:#514960;margin:0}
+#cl-college-overview .clo-facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:24px 0 0}
+#cl-college-overview .clo-facts article{min-width:0;padding:17px 16px;border:1.5px solid #e5d9f1;border-radius:17px;background:rgba(255,255,255,.9);box-shadow:0 5px 16px #3820570c}
+#cl-college-overview .clo-facts strong{display:block;font:950 23px/1.15 system-ui,sans-serif;color:#623c91}
+#cl-college-overview .clo-facts span{display:block;margin-top:8px;color:#62596d;font:600 12px/1.5 system-ui,sans-serif}
+#cl-college-overview .clo-note{display:flex;align-items:center;gap:9px;margin-top:19px;color:#675779;font:750 12px/1.4 system-ui,sans-serif}
+#cl-college-overview .clo-dot{width:9px;height:9px;flex:0 0 9px;border-radius:50%;background:#d88a35;box-shadow:0 0 0 4px #f8e8d6}
+@media(max-width:850px){#cl-college-overview .clo-facts{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){#cl-college-overview{width:calc(100% - 26px);margin:18px auto 25px;padding:24px 19px;border-radius:20px}#cl-college-overview .clo-facts{grid-template-columns:1fr}#cl-college-overview h2{font-size:29px}}
+</style>\n`;
+ function place(){
+   const root=document.getElementById('root');
+   const main=root&&root.querySelector('main');
+   let node=document.getElementById('cl-college-overview');
+   if(!node){node=section.content.firstElementChild.cloneNode(true);}
+   if(!document.getElementById('cl-college-overview-style')) document.head.appendChild(style.content.firstElementChild.cloneNode(true));
+   if(main){ if(node.parentElement!==main || node!==main.lastElementChild) main.appendChild(node); }
+   else if(root && root.parentElement===document.body){ if(node.parentElement!==document.body || node.previousElementSibling!==root) document.body.appendChild(node); }
+   node.style.setProperty('display','block','important');
+   node.style.setProperty('visibility','visible','important');
+   node.style.setProperty('opacity','1','important');
+   return !!main;
+ }
+ let n=0; const timer=setInterval(()=>{n++;if(place()||n>100)clearInterval(timer)},150);
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',place);
+ const root=document.getElementById('root');
+ if(root){new MutationObserver(()=>place()).observe(root,{childList:true,subtree:true});}
 })();
 </script>
 
